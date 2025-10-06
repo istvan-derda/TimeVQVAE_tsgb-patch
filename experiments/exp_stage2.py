@@ -49,6 +49,7 @@ class ExpStage2(pl.LightningModule):
 
         return loss_hist
 
+    """ This is a huge pain if not commented out
     @torch.no_grad()
     def validation_step(self, batch, batch_idx):
         self.eval()
@@ -88,6 +89,7 @@ class ExpStage2(pl.LightningModule):
             self.log('running_metrics/KD', kd)
 
         return loss_hist
+    """
 
     def configure_optimizers(self):
         opt = torch.optim.AdamW(self.parameters(), lr=self.config['exp_params']['lr'])

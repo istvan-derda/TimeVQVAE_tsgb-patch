@@ -61,17 +61,21 @@ class Metrics(object):
         self.X_test = dataset_importer.X_test  # (b 1 l)
         self.n_classes = n_classes
         
+        """ Commenting out the following lines fixes my issue
         # load a model
         self.fcn = load_pretrained_FCN(dataset_name)
         freeze(self.fcn)
         self.fcn.eval()
         
+
         input_length = self.X_train.shape[-1]
         self.rocket_kernels = generate_kernels(input_length, num_kernels=rocket_num_kernels)
         
         # compute z_train, z_test
         self.z_train = self.compute_z(self.X_train)  # (b d)
         self.z_test = self.compute_z(self.X_test)  # (b d)
+        """
+
 
     @torch.no_grad()
     def sample(self, maskgit, device, n_samples: int, kind: str, class_index:Union[None,int]):

@@ -87,6 +87,7 @@ def train_stage2(config: dict,
     trainer.save_checkpoint(os.path.join(f'saved_models', f'stage2-{dataset_name}.ckpt'))
 
     # test
+    # """ removing the following should just skip some evaluation and speed up my processing
     print('evaluating...')
     eval_device = device[0] if accelerator == 'gpu' else 'cpu'
     evaluation = Evaluation(dataset_name, in_channels, input_length, n_classes, eval_device, config, 
@@ -114,6 +115,7 @@ def train_stage2(config: dict,
     evaluation.log_pca([z_test, z_gen], ['Z_test', 'Zhat'])
     # evaluation.log_pca([z_train, z_test], ['z_train', 'z_test'])
 
+    # """until here
     wandb.finish()
 
 
